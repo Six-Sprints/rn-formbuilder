@@ -1,6 +1,6 @@
 {
   "name": "rn-formbuilder",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "It created form",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "forms"
   ],
   "author": "Gaurav Arya",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "formik": "^1.5.8",
     "react-native": "^0.61.2",

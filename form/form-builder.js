@@ -2,7 +2,7 @@ import { FormInput } from './form-input/text-input';
 import Formik from 'formik';
 import { View } from 'react-native';
 import { AsyncButton } from './form-input/async-button';
-export const FormBuilder = formData => {
+export const FormBuilder = ({ formData }) => {
     <Formik
         initialValues={formData.METADATA.initialValues}
         onSubmit={formData.EVENTS.onSubmit}
