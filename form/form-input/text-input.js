@@ -1,6 +1,5 @@
 import React from 'react';
 import { TextInput } from 'react-native';
-import { formStyle } from '../../styles/forms';
 import { FormWrapper } from '../form-wrapper';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
