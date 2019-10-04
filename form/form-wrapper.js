@@ -6,7 +6,7 @@ export const FormWrapper = ({ children, formikProps, formikKey }) => {
         <View>
             {children}
             {formikProps.errors[formikKey] && (
-                <Text style={formStyle.errorMessage}>
+                <Text>
                     {formikProps.errors[formikKey]}
                 </Text>
             )}

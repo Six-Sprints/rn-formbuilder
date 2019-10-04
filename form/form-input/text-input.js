@@ -49,7 +49,6 @@ export const FormInput = ({ label, type, formikProps, formikKey, ...rest }) => {
         case FormFieldConstants.TEXTAREA:
             field =
                 <TextInput
-                    style={formStyle.inputBox}
                     onChangeText={formikProps.handleChange(formikKey)}
                     onBlur={formikProps.handleBlur(formikKey)}
                     value={formikProps.values[formikKey]}

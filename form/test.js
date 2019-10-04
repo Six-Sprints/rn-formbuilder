@@ -19,7 +19,7 @@ export const formData = {
     EVENTS: {
         onSubmit: {},
     },
-    THEME: [{
-        default: {}
-    }]
+    ACTIONS: {
+        key: 'Login'
+    }
 };
