@@ -1,22 +1,16 @@
-import {
-    TouchableNativeFeedback,
-    View,
-    Text,
-    ActivityIndicator,
-} from 'react-native';
-import { formStyle } from '../../styles/forms';
-import { AppConstants } from '../../utils/app-constants';
+import React from 'react';
+import { TouchableNativeFeedback, ActivityIndicator, View, Text } from 'react-native';
 
-export const AsyncButton = ({ label, formikProps, isLoading }) => {
+export const AsyncButton = ({ formData, formikProps, isLoading }) => {
     return (
         <TouchableNativeFeedback
-            background={TouchableNativeFeedback.Ripple(AppConstants.THEME.BLACK)}
+            background={TouchableNativeFeedback.Ripple(formData.button.btnRippleColor)}
             onPress={formikProps.handleSubmit}>
-            <View style={formStyle.button}>
+            <View style={formData.button.btnStyle}>
                 {isLoading ? (
-                    <ActivityIndicator animating={true} size="small" color="black" />
+                    <ActivityIndicator animating={true} size="small" color={formData.button.loaderColor.color} />
                 ) : (
-                        <Text style={formStyle.buttonText}>{label}</Text>
+                        <Text style={formData.button.btnTextStyle}>{formData.button.label}</Text>
                     )}
             </View>
         </TouchableNativeFeedback>

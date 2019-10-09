@@ -1,76 +1,75 @@
 import React from 'react';
-import { TextInput } from 'react-native';
-import { FormWrapper } from '../form-wrapper';
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import { View, Text, TextInput, Switch, CheckBox } from 'react-native';
+import { FormWrapper } from '../../../npm-package/form/form-wrapper';
+import { FormFieldConstants } from '../form-constants';
 
-export const FormInput = ({ label, type, formikProps, formikKey, ...rest }) => {
-    let field = '';
-    switch (type) {
-        case FormFieldConstants.EMAIL:
-            field =
-                <TextInput
-                    // style={formStyle.inputBox}
-                    onChangeText={formikProps.handleChange(formikKey)}
-                    onBlur={formikProps.handleBlur(formikKey)}
-                    value={formikProps.values[formikKey]}
-                    keyboardType='email-address'
-                    {...rest}
-                />
-            break;
-        case FormFieldConstants.NUMBER:
-            field =
-                <TextInput
-                    // style={formStyle.inputBox}
+
+export const FormInput = ({ label, type, formikProps, formikKey, errorStyle, ...rest }) => {
+    const renderSwitch = param => {
+        switch (param) {
+            case FormFieldConstants.NUMBER:
+                return <TextInput
                     onChangeText={formikProps.handleChange(formikKey)}
                     onBlur={formikProps.handleBlur(formikKey)}
                     value={formikProps.values[formikKey]}
                     keyboardType='number-pad'
                     {...rest}
                 />
-            break;
-        case FormFieldConstants.PASSWORD:
-            field =
-                <TextInput
-                    // style={formStyle.inputBox}
+            case FormFieldConstants.EMAIL:
+                return <TextInput
                     onChangeText={formikProps.handleChange(formikKey)}
                     onBlur={formikProps.handleBlur(formikKey)}
                     value={formikProps.values[formikKey]}
-                    secureTextEntry={true}
+                    keyboardType='email-address'
                     {...rest}
                 />
-            break;
-        case FormFieldConstants.CHECKBOX:
-            field = <CheckBox />
-            break;
-        case FormFieldConstants.RADIO:
-            field = <RadioButton />
-            break;
-        case FormFieldConstants.TEXTAREA:
-            field =
-                <TextInput
+            case FormFieldConstants.TEXTAREA:
+                return <TextInput
                     onChangeText={formikProps.handleChange(formikKey)}
                     onBlur={formikProps.handleBlur(formikKey)}
                     value={formikProps.values[formikKey]}
-                    secureTextEntry={true}
                     multiline
+                    keyboardType='email-address'
                     {...rest}
                 />
-            break;
-        case FormFieldConstants.SWITCH:
-            field = <Switch />
-            break;
-        case FormFieldConstants.BUTTON:
-            field = <Button />
-            break;
-        case FormFieldConstants.LOADING_BUTTON:
-            field = <Button />
-            break;
-        default: field = <TextInput
-            keyboardType='default' />
-            break;
+            case FormFieldConstants.PASSWORD:
+                return <TextInput
+                    onChangeText={formikProps.handleChange(formikKey)}
+                    onBlur={formikProps.handleBlur(formikKey)}
+                    value={formikProps.values[formikKey]}
+                    secureTextEntry
+                    {...rest}
+                />
+            case FormFieldConstants.SWITCH:
+                return <Switch
+                    value={formikProps.values[formikKey]}
+                    onValueChange={value => {
+                        formikProps.setFieldValue(formikKey, value)
+                    }}
+                    {...rest}
+                />
+            case FormFieldConstants.CHECKBOX:
+                return <CheckBox
+                    value={formikProps.values[formikKey]}
+                    onValueChange={value => {
+                        formikProps.setFieldValue(formikKey, value)
+                    }}
+                    {...rest}
+                />
+            default:
+                return <TextInput
+                    onChangeText={formikProps.handleChange(formikKey)}
+                    onBlur={formikProps.handleBlur(formikKey)}
+                    value={formikProps.values[formikKey]}
+                    keyboardType='default'
+                    {...rest}
+                />
+        }
     }
-    return <FormWrapper label={label} formikProps={formikProps} formikKey={formikKey}>
-        {field}
+    return <FormWrapper label={label} formikProps={formikProps} formikKey={formikKey} errorStyle={errorStyle}>
+        <View>
+            {label && <Text>{label}</Text>}
+            {renderSwitch(type)}
+        </View>
     </FormWrapper>
-};
-
+}
