@@ -15,7 +15,7 @@
   "dependencies": {
     "formik": "^1.5.8",
     "react": "^16.10.2",
-    "react-native": "^0.61.2",
+    "react-native": "^0.62.3",
     "react-native-simple-radio-button": "^2.7.3",
     "yup": "^0.27.0"
   }
